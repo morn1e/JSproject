@@ -10,16 +10,20 @@
 					 "k","l","m","n","o","p","g","r",
 					 "s","t","u","v","w","x","y","z"],
 			uniqueKeyLen,
-			strToCode = "hide the gold in the tree stump",
+			strToCode = "we are the champions my friend",
 			arrToCode,
-			arrDoubles = [];
+			arrDoubles = [],
+			arrFirst = [],
+			arrSecond = [],
+			arrEncoded = [],
+			strEncoded;
 
 
 
 
 //1.  Въвеждаме кодовата дума, която е стринг;
 
- keyword = "playfair example";
+ keyword = "everything is love";
 
  //2. Проверяваме дали кодовата дума съдържа празно място и ако да --> го премахваме;
  m= keyword.indexOf(" ");
@@ -181,55 +185,65 @@ for (j = 0; j<toCodeLen; j++){
 
 
 
-	for(j = 0; j <newArr.length; j+=2){
-			for (i = 0; i <newArr.length/2; i++)
-				{
-				arrDoubles[i] = new Array(2);
+for(j = 0; j <newArr.length; j+=2){
+	for (i = 0; i <newArr.length/2; i++)
+		{
+		arrDoubles[i] = new Array(2);
 
-				arrDoubles[i][0] = newArr[j];
-				arrDoubles[i][1] = newArr[j+1];
-				j+=2;
-
-			};
-		
-
-
-			
-				
+		arrDoubles[i][0] = newArr[j];
+		arrDoubles[i][1] = newArr[j+1];
+		j+=2;
+	};	
 };
-
-
 console.log(arrDoubles);
 
-// //11. Проверяваме мястото им в шифъра
+//11. Правим проверка на съответстващия индекс от шифър-масива на амасива за кодиране
 
-	// for(k = 0; k<5; k++){
-	// 	for(l = 0; l<5; l++){
-	// 			for(j = 0; j <arrDoubles.length; j++){
-	// 			if (arrDoubles[j][0] == arrCipher[k][l]) {
-	// 				// console.log(newArr[i]);
-	// 				// console.log( arrDoubles[j][0]);
-	// 				// console.log( arrDoubles[j][1]);
-	// 				console.log( arrDoubles[j][0] +" --->"+ k + " "+ l);
+	//11.1 Създаваме два помощни масива, в които ще съхраняваме стойностие на индексите;
+for(j = 0; j <newArr.length; j+=2){
+	for (i = 0; i <newArr.length/2; i++)
+		{
+		arrFirst[i] = new Array(2);
 
-	// 			};
-	// 			if (arrDoubles[j][1] == arrCipher[k][l]) {
-	// 				// console.log(newArr[i]);
-	// 				// console.log( arrDoubles[j][0]);
-	// 				// console.log( arrDoubles[j][1]);
-	// 				console.log( arrDoubles[j][1] +" --->"+ k + " "+ l);
+		arrFirst[i][0] = newArr[j];
+		arrFirst[i][1] = newArr[j+1];
+		j+=2;
+	};	
+};
+//console.log(arrFirst);
 
-	// 			};
-	//  		};
+for(j = 0; j <newArr.length; j+=2){
+	for (i = 0; i <newArr.length/2; i++)
+		{
+		arrSecond[i] = new Array(2);
 
-	// 	};
+		arrSecond[i][0] = newArr[j];
+		arrSecond[i][1] = newArr[j+1];
+		j+=2;
+	};	
+};
+//console.log(arrSecond);
 
-	// };
+
+for(j = 0; j <newArr.length; j+=2){
+	for (i = 0; i <newArr.length/2; i++)
+		{
+		arrEncoded[i] = new Array(2);
+
+		arrEncoded[i][0] = newArr[j];
+		arrEncoded[i][1] = newArr[j+1];
+		j+=2;
+	};	
+};
+//console.log(arrEncoded);
 
 
+
+//11.. 2 Проверяваме мястото им в шифъра
 
 						
-//console.log(arrFirst);
+
+
 for(j = 0; j <arrDoubles.length; j++){
 
 		for(k = 0; k<5; k++){
@@ -242,8 +256,9 @@ for(j = 0; j <arrDoubles.length; j++){
 						// console.log(newArr[i]);
 						// console.log( arrDoubles[j][0]);
 						// console.log( arrDoubles[j][1]);
-						console.log( arrDoubles[j][0] + " --->" + k + " "+ l);
-
+						console.log(arrDoubles[j][0] + " --->" + k + " "+ l);
+						arrFirst[j][0] =k;
+						arrFirst[j][1] =l;
 																
 						
 							
@@ -263,9 +278,130 @@ for(j = 0; j <arrDoubles.length; j++){
 	
 };
 
-// console.log(arrFirst);
+//console.log(arrFirst);
 
-// for(i = 0; i<newArr.length; i++){
-// 	newArr[i].position = "1";
-// }
-// console.log(newArr[1].position);
+
+for(j = 0; j <arrDoubles.length; j++){
+
+		for(k = 0; k<5; k++){
+			for(l = 0; l<5; l++){
+			// console.log("current - > 0 " + arrDoubles[j][0]);
+			// console.log("current - > 1  " + arrDoubles[j][1]);
+				
+					if (arrDoubles[j][1] == arrCipher[k][l] ) {
+						// console.log("current - > 0 " + arrDoubles[j][0]);
+						// console.log(newArr[i]);
+						// console.log( arrDoubles[j][0]);
+						// console.log( arrDoubles[j][1]);
+						console.log(arrDoubles[j][1] + " --->" + k + " "+ l);
+						arrSecond[j][0] =k;
+						arrSecond[j][1] =l;
+																
+						
+							
+					};
+			
+				
+				//  if (arrDoubles[j][1] == arrCipher[k][l]) {
+				// // 	// console.log(newArr[i]);
+				// // 	// console.log( arrDoubles[j][0]);
+				// // 	// console.log( arrDoubles[j][1]);
+				// console.log( arrDoubles[j][1] +" --->"+ k + " "+ l);
+
+				//  };
+	 		};
+
+		};
+	
+};
+
+//console.log(arrSecond);
+
+
+
+
+for(j = 0; j <arrDoubles.length; j++){
+	//console.log(arrDoubles[j]);
+// Hx
+	k = arrFirst[j][0];
+// Ix
+	l = arrSecond[j][0];
+// Hy
+	m = arrFirst[j][1];
+// Iy;
+	n = arrSecond[j][1];
+	// console.log(k);
+	// console.log(m);
+	// console.log(l);
+	// console.log(n);
+	
+
+//12.  Проверяваме дали двойката букви за кодиране се намират в ред
+			if (k == l) {
+			//	console.log("row");
+				if (m<4) {
+				arrEncoded[j][0] = arrCipher[l][m+1]; 
+				
+				} else {
+				arrEncoded[j][0] = arrCipher[l][0];
+				
+				};
+				if (n < 4) {
+					arrEncoded[j][1] = arrCipher[k][n+1];
+				} else{
+					arrEncoded[j][1] = arrCipher[k][0];
+				}
+				// console.log(arrDoubles[j]);
+				// console.log(arrCipher[l][m+1]);
+				// console.log(arrCipher[l][n+1]);
+			};
+//13.  Проверяваме дали двойката букви за кодиране се намират в колона			
+			if (m == n) {
+			//	console.log("column");
+
+			if (l< 4 ) {
+				arrEncoded[j][0] = arrCipher[l+1][m]; 
+			}else {
+				arrEncoded[j][0] = arrCipher[0][m]; 
+			};
+				if (k < 4) {
+					arrEncoded[j][1] = arrCipher[k+1][n];
+				} else {
+					arrEncoded[j][1] = arrCipher[0][n];
+				}
+				
+				// console.log(arrDoubles[j]);
+				// console.log(arrCipher[l+1][m]);
+				// console.log(arrCipher[k+1][m])
+			};
+//14.  Проверяваме дали двойката букви за кодиране се намират в правоъгълник			
+			if (k !== l && m!==n){
+			//	console.log("recrangle");
+				if (k<n) {
+					arrEncoded[j][0] = arrCipher[k][n]; 
+					arrEncoded[j][1] = arrCipher[l][m];	
+				} else {
+					arrEncoded[j][1] = arrCipher[k][n]; 
+					arrEncoded[j][0] = arrCipher[l][m];	
+				}
+				
+				// console.log(arrDoubles[j]);
+				// console.log(arrCipher[k][n]);
+				// console.log(arrCipher[l][m]);
+				
+							
+				
+	};
+};	
+
+
+// console.log(arrDoubles);
+
+// console.log(arrEncoded);
+
+//15. Отпечатваме шифрования стринг
+strEncoded = arrEncoded.join("");
+var myArr = strEncoded.split(",");
+strEncoded =  myArr.join("");
+
+console.log(strEncoded);
