@@ -1,4 +1,4 @@
-	var keyword,
+	var keyword = "never back down",
 			arrCheck,
 			arrKey,
 			m,n,
@@ -16,16 +16,57 @@
 			arrFirst = [],
 			arrSecond = [],
 			arrEncoded = [],
-			strEncoded;
+			strEncoded,
+			txt;
 
 
 
 
 //1.  Въвеждаме кодовата дума, която е стринг;
+	
+var form = document.getElementById('myform');
+function onSubmit(event) {			
+		event.preventDefault(); 
+		var keyword = document.getElementById('name').value;
+		if(!keyword){
+			console.log('enter name');					
+		} else {
+			console.log(keyword);
+var form2 = document.getElementById('myform2');
+function onSubmit(event) {			
+		event.preventDefault(); 
+		var strToCode = document.getElementById('toencode').value;
+		if(!strToCode){
+			console.log('enter text');					
+		} else {
+			console.log(strToCode);			
+   
 
- keyword = "everything is love";
+// 1.1 Отпечатваме кодовата дума
+var para = document.createElement("P");                       
+var t = document.createTextNode("The keyword is: " + keyword);       
+para.appendChild(t);   
+para.className += "keyword";
+document.body.appendChild(para);
+
+console.log(keyword);
+console.log(newKeyword);
+
+// console.log(keyword);
+// keyword = name;
+// console.log(keyword);
+// var getKeyword
+//   function onload() { 
+//   	pre
+//         getKeyword = document.getElementById('inputPassword2');
+//         keyword = getKeyword.value;
+//     }
+//     function kk(){
+//         console.log(keyword);
+//     }
 
  //2. Проверяваме дали кодовата дума съдържа празно място и ако да --> го премахваме;
+ 
  m= keyword.indexOf(" ");
  // console.log(m);
  if (m!== -1){
@@ -90,14 +131,49 @@ for(i =  0; i<uniqueKeyLen; i++){
 	 		arrCipher[k][l] = uniqueKey[i];
 	 		i++;
 
-	 		document.write(arrCipher[k][l] + " ");
+	 		//document.write(arrCipher[k][l] + " ");
 		};
-		document.write("<br/>");
+		//document.write("<br/>");
 
 	};
 
 };
+
+function createTable(tableData) {
+  var table = document.createElement('table');
+  var tableBody = document.createElement('tbody');
+
+  tableData.forEach(function(rowData) {
+    var row = document.createElement('tr');
+
+    rowData.forEach(function(cellData) {
+      var cell = document.createElement('td');
+      cell.appendChild(document.createTextNode(cellData));
+      row.appendChild(cell);
+    });
+
+    tableBody.appendChild(row);
+  });
+
+//table.style.border = "thick solid #BA36C6";
+// .style.border = "thick solid #0000FF";
+
+table.className += " table table-sm";
+table.style.width = "50%";
+table.className +=  "text-center";
+
+  table.appendChild(tableBody);
+  document.body.appendChild(table);
+}
+
+// table.setAttribute("style", " border-style: solid;");
+//  table.setAttribute("style", " border-width: 5px;");
+
+createTable(arrCipher);
+
 console.log(arrCipher);
+
+
 
 
 // arrKeylen = arrKey.length;
@@ -117,7 +193,16 @@ console.log(arrCipher);
 // };
 // console.log(arrCipher);
 
-//5. Проверяваме дали думата за кодиране съдържа празно място и ако да --> го премахваме;
+//5.1 Визуализиране на думата за кодиране 
+
+var para = document.createElement("P");                       
+var t = document.createTextNode("The text to encode is: " + strToCode);       
+para.appendChild(t);   
+para.className += "strToCode";
+document.body.appendChild(para);
+
+
+// 5. 2 Проверяваме дали думата за кодиране съдържа празно място и ако да --> го премахваме;
  m= strToCode.indexOf(" ");
  // console.log(m);
  if (m!== -1){
@@ -126,7 +211,7 @@ console.log(arrCipher);
  };
  	// console.log(keyword);
 
-// 6. Превръщаме ключовата дума в масив;
+// 6. Превръщаме думата за кодиране в масив;
 
 arrToCode = strToCode.split("");
 console.log(arrToCode);
@@ -195,7 +280,16 @@ for(j = 0; j <newArr.length; j+=2){
 		j+=2;
 	};	
 };
-console.log(arrDoubles);
+//console.log(arrDoubles);
+
+var para = document.createElement("P");  
+for(j = 0; j <arrDoubles.length; j++){
+	var t = document.createTextNode(" The "+ (j +1 ) + " pair is " + arrDoubles[j] + " ;"); 
+	para.appendChild(t); 
+}                     
+para.appendChild(t);   
+para.className += "strToCode";
+document.body.appendChild(para);
 
 //11. Правим проверка на съответстващия индекс от шифър-масива на амасива за кодиране
 
@@ -399,9 +493,38 @@ for(j = 0; j <arrDoubles.length; j++){
 
 // console.log(arrEncoded);
 
+var para = document.createElement("P");  
+for(j = 0; j <arrEncoded.length; j++){
+	var t = document.createTextNode(" The "+ (j +1 ) + " encoded pair is " + arrEncoded[j] + " ;"); 
+	para.appendChild(t); 
+}                     
+para.appendChild(t);   
+para.className += "strEncoded";
+document.body.appendChild(para);
+
 //15. Отпечатваме шифрования стринг
 strEncoded = arrEncoded.join("");
 var myArr = strEncoded.split(",");
 strEncoded =  myArr.join("");
 
 console.log(strEncoded);
+
+var para = document.createElement("P");                       
+var t = document.createTextNode("The encoded text is: " + strEncoded);       
+para.appendChild(t);   
+para.className += "strEncoded";
+document.body.appendChild(para);
+
+		}    			
+	}
+
+
+form2.addEventListener('submit', onSubmit, false);
+form2.submit = onSubmit;
+
+		}    			
+	}
+
+
+form.addEventListener('submit', onSubmit, false);
+form.submit = onSubmit;
